@@ -23,6 +23,15 @@ public class UserService {
     private final JwtTokenProvider jwtTokenProvider;
     private final AuthenticationManager authenticationManager;
 
+    public AppUser saveCustomer(AppUser appUser){
+        if (!userRepository.existsByUsername(appUser.getUsername())) {
+            appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
+
+            return userRepository.save(appUser);
+        } else {
+            throw new CustomException("Username is already in use", HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+    }
     public String signin(String username, String password) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));

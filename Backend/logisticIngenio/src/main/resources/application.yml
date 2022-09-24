@@ -6,8 +6,7 @@ spring:
     password: ingenio
   jpa:
     hibernate:
-      hbm2ddl:
-        auto: none
+      ddl-auto: none
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -34,3 +33,9 @@ UserController:
   delete: Elimina un usuario específico por nombre de usuario
   search: Devuelve usuario específico por nombre de usuario
   profile: Devuelve los datos del usuario actual
+
+CustomerController:
+  register: Registra un cliente
+  profile: Devuelve los datos del cliente actual
+  search: Devuelve el cliente especifico por documento
+  list: Devuelve el listado de todos los clientes
